@@ -12,13 +12,11 @@ public class Main {
             String password = "vedant@603";
             con = DriverManager.getConnection(url, username, password);
             System.out.println("The Database Connected Successfully");
-//            Statement st = con.createStatement();
-            PreparedStatement stmt = con.prepareStatement("update employee_payroll set salary = ? where name = ?");
-//            st.executeUpdate("update employee_payroll set salary = 3000000.00 where name = ?");
-            stmt.setDouble(1,300000.00);
-            stmt.setString(2,"vedant");
-            stmt.executeUpdate();
-            ResultSet rs = stmt.executeQuery("select * from employee_payroll");
+            PreparedStatement stmt = con.prepareStatement("select * from employee_payroll where start_date between cast(? as DATE) AND DATE(NOW()) ");
+//            stmt.setDouble(1,300000.00);
+//            stmt.setString(2,"vedant");
+            stmt.setString(1,"2000-01-01");
+            ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 System.out.println("id : " +rs.getInt(1));
                 System.out.println("name : " +rs.getString(2));
