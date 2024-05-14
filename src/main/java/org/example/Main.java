@@ -12,8 +12,8 @@ public class Main {
             String password = "vedant@603";
             con = DriverManager.getConnection(url, username, password);
             System.out.println("The Database Connected Successfully");
-
             Statement st = con.createStatement();
+            st.executeUpdate("update employee_payroll set salary = 3000000.00 where name = 'vedant'");
             ResultSet rs = st.executeQuery("select * from employee_payroll");
             while(rs.next()){
                 System.out.println("id : " +rs.getInt(1));
